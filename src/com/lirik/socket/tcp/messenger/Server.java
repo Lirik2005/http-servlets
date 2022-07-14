@@ -1,4 +1,4 @@
-package com.lirik.socket.messenger;
+package com.lirik.socket.tcp.messenger;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;

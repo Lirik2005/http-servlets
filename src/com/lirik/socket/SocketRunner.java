@@ -33,19 +33,18 @@ public class SocketRunner {
          * Объект класса InetAddress можно передавать в конструктор класса Socket вместо имени хоста. Так будет наиболее верно
          */
 
-        InetAddress inetAddress = Inet4Address.getByName("google.com");
+        InetAddress inetAddress = Inet4Address.getByName("localhost"); // host может быть любой!!!
 
         /**
          * Второй вариант, когда адрес передается с помощью объекта класса InetAddress. Такой способ будет более верным и правильным!!!
          */
 
-        try (Socket socket = new Socket(inetAddress, 80);
+        try (Socket socket = new Socket(inetAddress, 7777);
              DataOutputStream outputStream = new DataOutputStream(socket.getOutputStream());   //  необходим для отправки запроса на сервер
              DataInputStream inputStream = new DataInputStream(socket.getInputStream())) {    // необходим для считывания ответа от сервера
 
             outputStream.writeUTF("hello world"); // отправили запрос на сервер
-            byte[] response = inputStream.readAllBytes(); // получили ответ от сервера
-            System.out.println(response.length);
+            System.out.println("Response from server: " + inputStream.readUTF());
         }
     }
 }
